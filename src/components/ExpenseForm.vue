@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Check, Plus } from 'lucide-vue-next'
 import { useExpensesStore } from '@/stores/expenses'
 
 const store = useExpensesStore()
+const { t } = useI18n()
 
 const description = ref('')
 const amount = ref('')
@@ -44,7 +46,7 @@ function handleSubmit() {
       v-if="store.people.length === 0"
       class="warning"
     >
-      Añade al menos una persona antes de registrar un gasto.
+      {{ t('expenses.needPerson') }}
     </p>
 
     <template v-else>
@@ -52,7 +54,7 @@ function handleSubmit() {
         <input
           v-model="description"
           type="text"
-          placeholder="Descripción"
+          :placeholder="t('expenses.descriptionPlaceholder')"
           required
         />
 
@@ -61,17 +63,25 @@ function handleSubmit() {
           type="number"
           step="0.01"
           min="0.01"
-          placeholder="Importe (€)"
+          :placeholder="t('expenses.amountPlaceholder')"
           required
         />
       </div>
 
       <div class="payer-section">
         <div class="payer-header">
-          <span>¿Quién pagó?</span>
+          <span>
+            {{ t('expenses.whoPaid') }}
+          </span>
 
           <span class="selected-count">
-            {{ paidBy.length }} seleccionado<span v-if="paidBy.length !== 1">s</span>
+            {{
+              t(
+                'expenses.selectedCount',
+                { count: paidBy.length },
+                paidBy.length
+              )
+            }}
           </span>
         </div>
 
@@ -106,7 +116,13 @@ function handleSubmit() {
           v-if="paidBy.length > 1"
           class="split-info"
         >
-          El importe se repartirá entre los {{ paidBy.length }} pagadores.
+          {{
+            t(
+              'expenses.splitBetween',
+              { count: paidBy.length },
+              paidBy.length
+            )
+          }}
         </p>
       </div>
 
@@ -116,7 +132,7 @@ function handleSubmit() {
         :disabled="paidBy.length === 0"
       >
         <Plus :size="18" />
-        Añadir gasto
+        {{ t('expenses.addExpense') }}
       </button>
     </template>
   </form>

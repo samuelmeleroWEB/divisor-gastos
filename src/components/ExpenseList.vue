@@ -1,8 +1,10 @@
 <script setup>
 import { Trash2 } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 import { useExpensesStore } from '@/stores/expenses'
 
 const store = useExpensesStore()
+const { t } = useI18n()
 
 function normalizePaidBy(paidBy) {
   return Array.isArray(paidBy)
@@ -14,7 +16,10 @@ function normalizePaidBy(paidBy) {
 
 function personName(id) {
   const person = store.people.find((p) => p.id === id)
-  return person ? person.name : 'Desconocido'
+
+  return person
+    ? person.name
+    : t('common.unknown')
 }
 
 function payerNames(expense) {
@@ -41,7 +46,9 @@ function formatMoney(value) {
 <template>
   <div class="expense-list">
     <div class="list-header">
-      <h3>Gastos</h3>
+      <h3>
+        {{ t('expenses.title') }}
+      </h3>
 
       <span class="count">
         {{ store.expenses.length }}
@@ -52,7 +59,7 @@ function formatMoney(value) {
       v-if="store.expenses.length === 0"
       class="empty"
     >
-      Todavía no hay gastos registrados.
+      {{ t('expenses.empty') }}
     </p>
 
     <ul v-else>
@@ -72,22 +79,33 @@ function formatMoney(value) {
           </div>
 
           <span class="meta">
-            Pagado por {{ payerNames(expense) }}
+            {{
+              t('expenses.paidBy', {
+                names: payerNames(expense),
+              })
+            }}
           </span>
 
           <span
-            v-if="normalizePaidBy(expense.paidBy).length > 1"
+            v-if="
+              normalizePaidBy(expense.paidBy).length > 1
+            "
             class="split"
           >
-            {{ formatMoney(amountPerPayer(expense)) }}
-            por persona
+            {{
+              t('expenses.perPerson', {
+                amount: formatMoney(
+                  amountPerPayer(expense)
+                ),
+              })
+            }}
           </span>
         </div>
 
         <button
           class="delete-button"
           type="button"
-          title="Eliminar gasto"
+          :title="t('expenses.deleteExpense')"
           @click="store.removeExpense(expense.id)"
         >
           <Trash2 :size="17" />
@@ -99,7 +117,10 @@ function formatMoney(value) {
       v-if="store.expenses.length > 0"
       class="total"
     >
-      <span>Total</span>
+      <span>
+        {{ t('expenses.total') }}
+      </span>
+
       <strong>
         {{ formatMoney(store.totalExpenses) }}
       </strong>

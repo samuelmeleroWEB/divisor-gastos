@@ -1,23 +1,57 @@
 <script setup>
+import { Trash2 } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+
 import { useExpensesStore } from '@/stores/expenses'
 
 const store = useExpensesStore()
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="person-list">
-    <h3>Personas del grupo ({{ store.people?.length ?? 0 }})</h3>
+    <div class="list-header">
+      <h3>
+        {{ t('people.groupPeople') }}
+      </h3>
 
-    <p v-if="!store.people || store.people.length === 0" class="empty">
-      Todavía no has añadido a nadie.
+      <span class="count">
+        {{ store.people?.length ?? 0 }}
+      </span>
+    </div>
+
+    <p
+      v-if="
+        !store.people ||
+        store.people.length === 0
+      "
+      class="empty"
+    >
+      {{ t('people.empty') }}
     </p>
 
     <ul v-else>
-      <li v-for="person in store.people" :key="person.id">
-        <span>{{ person.name }}</span>
+      <li
+        v-for="person in store.people"
+        :key="person.id"
+      >
+        <div class="person-info">
+          <span class="avatar">
+            {{ person.name.charAt(0).toUpperCase() }}
+          </span>
 
-        <button @click="store.removePerson(person.id)" title="Eliminar">
-          ✕
+          <span class="person-name">
+            {{ person.name }}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          class="delete-button"
+          :title="t('people.delete')"
+          @click="store.removePerson(person.id)"
+        >
+          <Trash2 :size="17" />
         </button>
       </li>
     </ul>
@@ -25,35 +59,142 @@ const store = useExpensesStore()
 </template>
 
 <style scoped>
-.person-list h3 {
-  margin-bottom: 0.5rem;
+.person-list {
+  margin-top: 1rem;
 }
 
-.person-list .empty {
-  color: #888;
-  font-style: italic;
-}
-
-.person-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.person-list li {
+.list-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.4rem 0.6rem;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  margin-bottom: 0.3rem;
+  gap: 0.5rem;
+
+  margin-bottom: 0.7rem;
 }
 
-.person-list button {
-  background: none;
+.list-header h3 {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.count {
+  display: grid;
+
+  min-width: 24px;
+  height: 24px;
+
+  place-items: center;
+
+  border-radius: 8px;
+
+  background: #f1f5f9;
+  color: #64748b;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.empty {
+  margin: 0;
+  padding: 1rem;
+
+  border: 1px dashed #dbe3e1;
+  border-radius: 12px;
+
+  color: #94a3b8;
+
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+
+  padding: 0.65rem 0.75rem;
+
+  border: 1px solid #edf1f0;
+  border-radius: 12px;
+
+  background: #f8fafc;
+}
+
+.person-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+
+  min-width: 0;
+}
+
+.avatar {
+  display: grid;
+
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 auto;
+
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: #ecfdf5;
+  color: #0f766e;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.person-name {
+  overflow: hidden;
+
+  color: #334155;
+
+  font-size: 0.9rem;
+  font-weight: 650;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-button {
+  display: grid;
+
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 auto;
+
+  place-items: center;
+
   border: none;
-  color: #e74c3c;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #94a3b8;
+
   cursor: pointer;
-  font-weight: bold;
+}
+
+.delete-button:hover {
+  background: #fef2f2;
+  color: #dc2626;
 }
 </style>
