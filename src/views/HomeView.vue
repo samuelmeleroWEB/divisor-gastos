@@ -1,11 +1,5 @@
 <script setup>
-import {
-  WalletCards,
-  Users,
-  ReceiptText,
-  Scale,
-  Languages,
-} from 'lucide-vue-next'
+import { WalletCards, Users, ReceiptText, Scale, Languages } from 'lucide-vue-next'
 
 import { useI18n } from 'vue-i18n'
 import { useExpensesStore } from '@/stores/expenses'
@@ -33,10 +27,7 @@ function changeLanguage(language) {
       <div class="hero-top">
         <div class="brand">
           <div class="brand-icon">
-            <WalletCards
-              :size="30"
-              :stroke-width="1.8"
-            />
+            <WalletCards :size="30" :stroke-width="1.8" />
           </div>
 
           <div>
@@ -50,10 +41,7 @@ function changeLanguage(language) {
 
         <div class="hero-actions">
           <div class="language-switcher">
-            <Languages
-              :size="17"
-              :stroke-width="2"
-            />
+            <Languages :size="17" :stroke-width="2" />
 
             <button
               type="button"
@@ -93,10 +81,7 @@ function changeLanguage(language) {
       <section class="card">
         <div class="section-heading">
           <div class="section-icon">
-            <Users
-              :size="21"
-              :stroke-width="2"
-            />
+            <Users :size="21" :stroke-width="2" />
           </div>
 
           <div>
@@ -117,10 +102,7 @@ function changeLanguage(language) {
       <section class="card">
         <div class="section-heading">
           <div class="section-icon">
-            <ReceiptText
-              :size="21"
-              :stroke-width="2"
-            />
+            <ReceiptText :size="21" :stroke-width="2" />
           </div>
 
           <div>
@@ -141,10 +123,7 @@ function changeLanguage(language) {
       <section class="card summary-card">
         <div class="section-heading">
           <div class="section-icon">
-            <Scale
-              :size="21"
-              :stroke-width="2"
-            />
+            <Scale :size="21" :stroke-width="2" />
           </div>
 
           <div>
@@ -169,9 +148,7 @@ function changeLanguage(language) {
     <footer class="footer">
       <span>{{ t('app.name') }}</span>
 
-      <span class="footer-separator">
-        ·
-      </span>
+      <span class="footer-separator"> · </span>
 
       <span>
         {{ t('app.tagline') }}
@@ -182,10 +159,7 @@ function changeLanguage(language) {
 
 <style scoped>
 .home {
-  width: min(
-    1120px,
-    calc(100% - 2rem)
-  );
+  width: min(1120px, calc(100% - 2rem));
 
   margin: 0 auto;
   padding: 3rem 0 2rem;
@@ -202,24 +176,14 @@ function changeLanguage(language) {
   border-radius: 28px;
 
   background:
-    radial-gradient(
-      circle at top right,
-      rgba(255, 255, 255, 0.16),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #0f766e 0%,
-      #115e59 100%
-    );
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 35%),
+    linear-gradient(135deg, #0f766e 0%, #115e59 100%);
 
   color: white;
 
   box-shadow:
-    0 18px 40px
-      rgba(15, 118, 110, 0.16),
-    0 2px 8px
-      rgba(15, 23, 42, 0.05);
+    0 18px 40px rgba(15, 118, 110, 0.16),
+    0 2px 8px rgba(15, 23, 42, 0.05);
 }
 
 .hero::before {
@@ -235,8 +199,7 @@ function changeLanguage(language) {
 
   border-radius: 50%;
 
-  background:
-    rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.06);
 
   pointer-events: none;
 }
@@ -254,8 +217,7 @@ function changeLanguage(language) {
 
   border-radius: 50%;
 
-  background:
-    rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 
   pointer-events: none;
 }
@@ -290,13 +252,11 @@ function changeLanguage(language) {
 
   place-items: center;
 
-  border: 1px solid
-    rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   border-radius: 20px;
 
-  background:
-    rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.12);
 
   color: white;
 
@@ -307,8 +267,7 @@ function changeLanguage(language) {
 .brand h1 {
   margin: 0 0 0.4rem;
 
-  font-size:
-    clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
 
   font-weight: 800;
   line-height: 1;
@@ -321,8 +280,7 @@ function changeLanguage(language) {
 
   margin: 0;
 
-  color:
-    rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.82);
 
   font-size: 1.03rem;
   line-height: 1.55;
@@ -341,24 +299,51 @@ function changeLanguage(language) {
 }
 
 .language-switcher {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  gap: 0.3rem;
 
-  padding: 0.35rem 0.55rem;
+  padding: 0.45rem 0.6rem;
 
-  border: 1px solid
-    rgba(255, 255, 255, 0.18);
-
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
 
-  background:
-    rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 
-  color:
-    rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.65);
 
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.language-switcher button {
+  min-width: 25px;
+  padding: 0.15rem 0.2rem;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+
+  cursor: pointer;
+
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.language-switcher button:hover {
+  color: white;
+}
+
+.language-switcher button.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
 }
 
 .language-switcher button {
@@ -368,8 +353,7 @@ function changeLanguage(language) {
 
   background: transparent;
 
-  color:
-    rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.55);
 
   cursor: pointer;
 
@@ -400,12 +384,9 @@ function changeLanguage(language) {
   margin-top: 1.5rem;
   padding-top: 1.15rem;
 
-  border-top:
-    1px solid
-    rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 
-  color:
-    rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.65);
 
   font-size: 0.78rem;
 }
@@ -421,8 +402,7 @@ function changeLanguage(language) {
 .grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: 1.5rem;
 }
@@ -432,19 +412,15 @@ function changeLanguage(language) {
 .card {
   padding: 1.5rem;
 
-  border:
-    1px solid #e7eceb;
+  border: 1px solid #e7eceb;
 
   border-radius: 22px;
 
-  background:
-    rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.94);
 
   box-shadow:
-    0 1px 2px
-      rgba(15, 23, 42, 0.03),
-    0 10px 30px
-      rgba(15, 23, 42, 0.045);
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 10px 30px rgba(15, 23, 42, 0.045);
 
   transition:
     transform 0.2s ease,
@@ -458,10 +434,8 @@ function changeLanguage(language) {
   border-color: #d8e5e2;
 
   box-shadow:
-    0 2px 4px
-      rgba(15, 23, 42, 0.04),
-    0 16px 35px
-      rgba(15, 23, 42, 0.07);
+    0 2px 4px rgba(15, 23, 42, 0.04),
+    0 16px 35px rgba(15, 23, 42, 0.07);
 }
 
 .summary-card {
@@ -494,9 +468,7 @@ function changeLanguage(language) {
   background: #ecfdf5;
   color: #0f766e;
 
-  box-shadow:
-    inset 0 0 0 1px
-      rgba(15, 118, 110, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.05);
 }
 
 .eyebrow {
@@ -555,27 +527,39 @@ function changeLanguage(language) {
 
 @media (max-width: 850px) {
   .hero-top {
-    flex-direction: column;
+    position: relative;
+    display: block;
   }
 
   .hero-actions {
-    align-items: stretch;
-
     width: 100%;
+    margin-top: 1.2rem;
   }
 
   .language-switcher {
-    align-self: flex-end;
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    z-index: 5;
+
+    margin: 0;
+  }
+
+  .brand {
+    /* Dejamos espacio para ES / EN */
+    padding-right: 105px;
+  }
+
+  .group-selector {
+    width: 100%;
   }
 }
 
 @media (max-width: 720px) {
   .home {
-    width:
-      min(
-        100% - 1.25rem,
-        1120px
-      );
+    width: min(100% - 1.25rem, 1120px);
 
     padding-top: 1rem;
   }
@@ -635,8 +619,13 @@ function changeLanguage(language) {
     padding: 1.4rem;
   }
 
+  .hero-top {
+    position: relative;
+  }
+
   .brand {
-    gap: 0.9rem;
+    gap: 0.8rem;
+    padding-right: 90px;
   }
 
   .brand-icon {
@@ -645,15 +634,33 @@ function changeLanguage(language) {
   }
 
   .brand h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
-  .section-heading {
-    margin-bottom: 1.1rem;
+  .brand p {
+    margin-top: 0.3rem;
+    padding-right: 0;
+
+    font-size: 0.86rem;
+    line-height: 1.45;
   }
 
-  .active-group-banner {
-    flex-wrap: wrap;
+  .language-switcher {
+    top: 2px;
+    right: 0;
+
+    padding: 0.35rem 0.45rem;
+  }
+
+  .language-switcher button {
+    min-width: 22px;
+    padding: 0.1rem;
+
+    font-size: 0.68rem;
+  }
+
+  .hero-actions {
+    margin-top: 1.2rem;
   }
 }
 </style>
