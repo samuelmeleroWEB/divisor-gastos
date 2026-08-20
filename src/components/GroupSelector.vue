@@ -1,5 +1,6 @@
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+
 import { useI18n } from 'vue-i18n'
 
 import { ChevronDown, Plus, Pencil, Trash2, Check, X, UsersRound } from 'lucide-vue-next'
@@ -8,6 +9,8 @@ import { useExpensesStore } from '@/stores/expenses'
 
 const store = useExpensesStore()
 const { t } = useI18n()
+
+const selectorRef = ref(null)
 
 const isOpen = ref(false)
 const creating = ref(false)
@@ -28,6 +31,20 @@ function closeMenu() {
   creating.value = false
   editingId.value = null
 }
+
+function handleClickOutside(event) {
+  if (isOpen.value && selectorRef.value && !selectorRef.value.contains(event.target)) {
+    closeMenu()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('pointerdown', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('pointerdown', handleClickOutside)
+})
 
 async function startCreating() {
   creating.value = true
@@ -100,7 +117,7 @@ function deleteGroup(group) {
 </script>
 
 <template>
-  <div class="group-selector">
+  <div ref="selectorRef" class="group-selector">
     <button type="button" class="current-group" :class="{ open: isOpen }" @click="toggleMenu">
       <span class="group-icon">
         <UsersRound :size="18" />
