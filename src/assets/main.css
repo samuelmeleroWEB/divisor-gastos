@@ -15,19 +15,35 @@
   text-rendering: optimizeLegibility;
 }
 
-* {
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
   min-width: 320px;
   min-height: 100%;
+
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   min-width: 320px;
   min-height: 100vh;
+
   margin: 0;
+
+  overflow-x: hidden;
+
   background:
     radial-gradient(
       circle at top left,
@@ -35,12 +51,62 @@ body {
       transparent 30rem
     ),
     #f5f7f8;
+
   color: #172033;
 }
 
+#app {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+
+  overflow-x: hidden;
+}
+
+/* =========================
+   ELEMENTOS RESPONSIVE
+========================= */
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea {
+  min-width: 0;
+  max-width: 100%;
+}
+
+button {
+  max-width: 100%;
+}
+
+/* Evita que textos largos puedan
+   provocar overflow horizontal */
+p,
+span,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -56,20 +122,28 @@ button:active {
 }
 
 input,
-select {
+select,
+textarea {
   outline: none;
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   border-color: #14b8a6 !important;
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+  box-shadow:
+    0 0 0 3px
+    rgba(20, 184, 166, 0.12);
 }
 
 button,
 select {
   cursor: pointer;
 }
+
+/* =========================
+   SELECCIÓN DE TEXTO
+========================= */
 
 ::selection {
   background: #99f6e4;

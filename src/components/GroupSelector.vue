@@ -357,6 +357,8 @@ function deleteGroup(group) {
   width: min(360px, 100%);
   max-width: 100%;
 
+  padding: 0.65rem;
+
   box-sizing: border-box;
 
   border: 1px solid #e2e8f0;
@@ -623,16 +625,22 @@ function deleteGroup(group) {
 @media (max-width: 600px) {
   .group-selector {
     width: 100%;
+    max-width: 100%;
   }
 
   .dropdown {
-    left: 0;
-    right: auto;
+    left: 10px;
+    right: 10px;
 
-    width: 100%;
-    max-width: 100%;
+    width: auto;
+    max-width: none;
+
+    margin-top: 0.35rem;
+    padding: 0.65rem;
 
     box-sizing: border-box;
+
+    border-radius: 16px;
   }
 
   .current-group {
@@ -655,6 +663,18 @@ function deleteGroup(group) {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  .dropdown-header {
+    padding: 0.2rem 0.2rem 0.6rem;
+  }
+
+  .groups-list {
+    gap: 0.4rem;
+  }
+
+  .new-group-button {
+    margin-top: 0.65rem;
   }
 }
 </style>
